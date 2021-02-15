@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import sys
 import numpy as np
 from datetime import datetime
@@ -120,6 +121,7 @@ print(arr.argsort(axis=0))
 arr1 = np.array([[1, 2, 3], [4, 5, 6], [7, 1, 0]])
 arr2 = np.array([[1, 2, 1], [4, 0, 6], [8, 1, 0]])
 print(arr1+arr2)  # Prints the matrix sum of the respective elements of the matrices
+# Below element wise matrix multiplication is also known as "Hadamard product"
 # Prints the matrix multiplication of the respective elements of the matrices
 print(arr1*arr2)
 print(np.sqrt(arr1))  # Prints the squareroot of each element of arr1
@@ -208,3 +210,73 @@ a = np.array([1, 2, 3, 4])
 b = np.array([1, 2, 3, 4])
 print(np.average(a))
 print(np.average(a, weights=b))
+# Standard Deviation array
+print(np.std(a))
+# Variance of an array
+print(np.var(c))
+
+# Tensors - Tensors are arrays with more than two axis
+t = np.zeros((5, 5, 3))
+print(t)
+# Images are also stored as tensors as they are a 2D collection of pixels
+# and a pixel is an array of RGB values hence an image is stored like a tensor
+# Visualizing an image from tensor
+t = np.zeros((5, 5, 3), dtype='uint8')
+# Here we used uint8 i.e. unsigned int 8 as images don't need more space
+# than that hence to make it more space efficient we did so
+plt.imshow(t)
+plt.show()
+# Transpose of a tensor
+t = np.zeros((50, 25, 3))
+print(t.shape)
+# Without any other information just reverses the dimensions
+t1 = np.transpose(t)
+print(t1.shape)
+# With the axes parameters it changes the dimensions accordingly in the provided order
+t2 = np.transpose(t, axes=(2, 0, 1))
+print(t2.shape)
+
+# Broadcasting -
+# You can add scalar to vector and numpy will add it to each element of the vector
+a = np.array([1, 2, 3, 4])
+print(a+5)
+# Similarly you can add vector to matrix and numpy will add it to each column of the matrix
+b = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])
+print(b+a)
+
+# Norm of a vector
+# Norm can be thought of as a proxy for size of a vector
+# we define pth norm of a vector x as - ((summation((absolute value of i-th element of x)^p))^1/p)
+x = np.array([-3, 4])
+lp2 = np.linalg.norm(x)
+print(lp2)
+lp1 = np.linalg.norm(x, ord=1)
+print(lp1)
+# Calculating infinity norm - Infinity norm return the absolute value of the largest element of the array
+lpinf = np.linalg.norm(x, ord=np.inf)
+print(lpinf)
+
+# Determinant of a matrix
+a = np.array([[1, 2], [3, 4]])
+print(np.linalg.det(a))
+
+# Inverse of a matrix
+inv = np.linalg.inv(a)
+print(inv)
+print(inv.dot(a))
+
+# Pseudo inverse of a matrix -
+# If a matrix does not has an inverse it would still have a pseudo inverse always
+a = np.array([[1, 1], [1, 1]])
+pinv = np.linalg.pinv(a)
+print(pinv)
+print(np.dot(a, pinv))
+# Here if the matrix is invertable then pseudo inverse is same as inverse
+# Hence while solving a system of linear equations using matrices it is preferable to use pseudo inverse
+# rather than normal inverse as we can entirely avoid the problem of noninvertable matrices
+
+# Solving a system of linear equations
+a = np.array([[2, 3], [3, 1]])
+b = np.array([8, 5])
+sol = np.linalg.solve(a, b)
+print(sol)
