@@ -96,28 +96,6 @@ plt.pie(weightage, labels=subjects, explode=(
 plt.title("Subjects")
 plt.show()
 
-# Getting a Standard Normal Distribution
-# Suppose we need 100 values of a standard normal dist. and it should be around mean=60 and sigma = 5
-Xsn = np.random.randn(100)
-print(Xsn)
-sigma = 5
-u = 60
-X = Xsn*sigma+u
-print(X)
-
-# Getting a Standard Normal Distribution
-# Suppose we need 100 values of a standard normal dist. and it should be around mean=60 and sigma = 5
-Xsn = np.random.randn(100)
-print(Xsn)
-sigma1 = 5
-u1 = 60
-X1 = Xsn*sigma1+u1
-print(X)
-sigma2 = 5
-u2 = 40
-X2 = Xsn*sigma2+u2
-print(X2)
-
 # Histograms
 # alpha - used to define the opacity of the histogram plot
 # labels - used to assign labels to various parts of the pie chart

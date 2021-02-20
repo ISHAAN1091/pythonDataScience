@@ -280,3 +280,58 @@ a = np.array([[2, 3], [3, 1]])
 b = np.array([8, 5])
 sol = np.linalg.solve(a, b)
 print(sol)
+
+# Getting a Univariate Standard Normal Distribution
+# Suppose we need 100 values of a standard normal dist. and it should be around mean=60 and sigma = 5
+Xsn = np.random.randn(100)
+print(Xsn)
+sigma1 = 5
+u1 = 60
+X1 = Xsn*sigma1+u1
+print(X1)
+# Suppose we need 100 values of a standard normal dist. and it should be around mean=40 and sigma = 5
+sigma2 = 5
+u2 = 40
+X2 = Xsn*sigma2+u2
+print(X2)
+# We observe that for a normal distribution mean is the central value around/near which we have most of the
+# data and sigma represents the range of spread of the values around the mean
+# For example in the first case above with u=60 and sigma=5 most of the values will lie in the range
+# 60+5 and 60-5 i.e. from 55 to 65
+
+# Generating a Bivariate Normal Gaussian Distribution
+# Suppose we need 500 values with a mean u and covariance cov
+# Also a bivariate normal distribution is shaped like a bell shaped curve but in both x and y directions
+# The height and ellipticalness of this bell curve depends on the covariance between x and y i.e. cov-xy
+# or cov-yx where cov is the 2X2 matrix of [[cov-xx cov-xy], [cov-yx cov-yy]]
+# Example 1
+mean = np.array([0.0, 0.0])
+cov = np.array([[1, 0.0], [0.0, 1]])
+distbn = np.random.multivariate_normal(mean, cov, 500)
+print(distbn)
+plt.scatter(distbn[:, 0], distbn[:, 1])
+plt.show()
+# Example 2
+mean = np.array([0.0, 0.0])
+cov = np.array([[1, 0.5], [0.5, 1]])
+distbn = np.random.multivariate_normal(mean, cov, 500)
+print(distbn)
+plt.scatter(distbn[:, 0], distbn[:, 1])
+plt.show()
+# Example 3
+mean = np.array([0.0, 0.0])
+cov = np.array([[1, 0.8], [0.8, 1]])
+distbn = np.random.multivariate_normal(mean, cov, 500)
+print(distbn)
+plt.scatter(distbn[:, 0], distbn[:, 1])
+plt.show()
+# Example 4
+mean = np.array([0.0, 0.0])
+cov = np.array([[2, -0.8], [-0.8, 1]])
+distbn = np.random.multivariate_normal(mean, cov, 500)
+print(distbn)
+plt.scatter(distbn[:, 0], distbn[:, 1])
+plt.show()
+# Notice how the curve becomes more and more elliptical as the value of cov-xy/cov-yx(both are the same)
+# increases . This is because as they increase that means the dependance between x and y becomes stronger
+# Also cov-xx cov-yy represent the spread/thickness of the plot in x and y directions
